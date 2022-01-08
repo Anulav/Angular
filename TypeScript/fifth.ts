@@ -82,4 +82,92 @@ class Character {
 const character = new Character();
 character.namez = 'Luke';
 
+
+
+
+function NameChanger(callbackObject: any): Function {
+    return function (target: Object, key: string): void {
+        let propertyValue: string = this[key];
+        if (delete this[key]) {
+            Object.defineProperty(target, key, {
+                get: function () {
+                    return propertyValue;
+                },
+                set: function (newValue) {
+                    propertyValue = newValue;
+                    callbackObject.changeName.call(this,
+                        propertyValue);
+                }
+            });
+        }
+    }
+}
+class Character {
+    @NameChanger({
+        changeName: function (newValue: string): void {
+            console.log(`You are now known as ${newValue}`);
+        }
+    })
+    name: string;
+}
+var character = new Character();
+character.name = 'Anakin';
 */
+
+/*
+Method decorators can be used to detect, log and intervene in terms of how a method is executed. 
+For this we need to pass three args in method deceorator function:
+target : Represents the decorated method
+key : Actual name of the decorated method(String)
+values : A HashObject, Property Descriptor of the given method. Containing a property named value
+with a reference to itself.
+
+
+*/
+
+function Log(){
+    return function(target : any, propertyKey : string, descriptor : PropertyDescriptor){
+        const oldMethod = descriptor.value;
+        descriptor.value = function newFunc(...args: any[]){
+            let result = oldMethod.apply(this, args);
+            console.log(`${propertyKey} is called with ${args.join(',')} and result ${result}`);
+            return result;
+        }
+    }
+}
+
+class Hero{
+    @Log()
+    attack(...args: any[]) {return args.join(", ").concat(" are going to be defeated");}
+}
+
+const hero = new Hero();
+hero.attack("Villain","Sandman","Dr.Oc","Electro");
+
+/*
+Parameter Decorator: For parameters of a function, not changes or manipulates the args but can be used
+to log or replicate data. Need to pass three args in the Decorator function.
+target : Object prototype where the method is decorated. Usually belongs to a Class.
+key : Name of the function whose signature contains the decorated parameter.
+parameterIndex :  This is index of parameter array where decorator is applied.
+
+
+*/
+
+function Log2(target : Function, key: string, parameterIndex : number){
+    const functionLogged = key || target.constructor.name;
+    console.log(`The function logged is ${functionLogged} and the parameter logged has the parameter @ position ${parameterIndex}`);
+}
+
+class DemonSlayer{
+    breathingTechnique : string;
+
+    constructor(@Log2 breathingTechnique: string){
+        this.breathingTechnique = breathingTechnique;
+    }
+    getBreathingTechnique(): string {
+        return this.breathingTechnique;
+    }
+}
+
+const Rengoku = new DemonSlayer("Fire");
