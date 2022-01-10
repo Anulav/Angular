@@ -1,0 +1,30 @@
+<p>heroes works!</p>
+<ul>
+  <!--<li *ngFor="let hero of heroes; index as myIndex"> // Saves index of the collection in myIndex-->
+   <!-- <li *ngFor="let hero of heroes; property as variable"></li>  //variable is a local reference variable that can be used latter in the template-->
+   <li *ngFor="let hero of heroes | slice:1:5 | sort: 'name' ; trackBy: trackByHeroes"> <!--Th
+    trackBy property defines the trackByHeroes method that is declared in the component
+    and accepts two parameters, the index of the current item and the class actual item. It returns the property of the item that we want to use as the object identity-->
+   {{hero.name}}
+   <div [ngSwitch]="hero.team">
+     <div *ngSwitchCase="'avengers'">{{hero.name}} is an Avenger!</div>
+     <div *ngSwitchCase="'villain'">{{hero.name}} is an Villain!</div>
+     <div *ngSwitchDefault>{{hero.name}} works solo!</div>
+     <p>{{ hero | json}}</p> <!--json pipe used to make objects to be displayed as JSON-->
+   </div>
+  </li>
+  </ul>
+
+<!--ngSwitchCase adds/removes a template from the DOM tree depending on the value of the ngSwitch
+directive.
+ngSwitchDefault adds a template in the DOM tree if the value of the ngSwitch directive does not meet any statement
+ngSwitchCase. -->
+
+<!--Pipes-->
+<p>{{'Heroes are awesome' | uppercase}}</p>
+<p>{{0.123 | percent}}</p>
+<p>{{heroes | slice:1:3 | json}}</p>
+<p>{{today | date}}</p> <!--More details about predefined date formats at
+https://angular.io/api/common/DatePipe#predefined-format-options -->
+
+

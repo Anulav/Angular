@@ -1,0 +1,15 @@
+<p *ngIf="name === 'Boothstomper'; else noHero"> Hero works!</p> <!--We can chain multiple stmts using ';' and  noHero is a template reference element pointing to a ng-template element containtaing a paragraph as given below-->
+<p [hidden]="name !== 'Boothstomper'">Hero not found!</p>
+<ng-template #noHero>
+  <p>Hero was not found</p>
+  </ng-template>
+<!--We can use hidden element instead of ngIf directive. Since ngIf directive adds/removes the element
+from DOM but hidden just hides. We will prefer ngIf.
+Also recommended in case of large data we can just remove it since the Angular doesn't need to keep and store the
+element in the memory like in case of hidden.
+
+When using expressions that evaluate to a boolean value, it is best to use triple equality, ===, over the usual ==
+because === checks not only whethervalues are equal but also whether types match. For example,
+0 == '0' is true, whereas 0 === '0' is false.
+-->
+
