@@ -10,7 +10,7 @@ import { Hero } from './hero.model';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: Hero[], args: any): Hero[] {
+  transform(value: Hero[], args: string): Hero[] {
   /*
   transform(value: unknown, ...args: unknown[]): unknown {
       The first parameter, value, is the input that we want to transform. The second parameter, args, is an optional list of arguments that we can provide to the transformation method,

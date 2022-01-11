@@ -1,2 +1,9 @@
 <app-hero></app-hero>
 <app-heroes></app-heroes>
+<input appNumeric />
+<b></b>
+<div *appPermission="['admin', 'agent']"> <!--The name of the input property must have the same name as that of the
+  selector directive so that it can be used as follows-->
+  <h3>This area can be accessed by admins and agents only</h3>
+</div>
+<div appCopyright></div>
