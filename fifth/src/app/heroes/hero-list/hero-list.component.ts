@@ -15,7 +15,15 @@ We should effectively delegate business logic tasks away from the component.
   selector: 'app-hero-list',
   templateUrl: './hero-list.component.html',
   styleUrls: ['./hero-list.component.css'],
-  providers: [HeroService]  //Added hero Service as provider for HeroListComponent
+  providers: [HeroService]  //Added hero Service as provider for HeroListComponent.
+  /* Services that are provided with the application root injector are available through the
+    whole application. When a component wants to use such a service, it only needs to inject
+    it through its constructor, nothing more. Now, if the component provides the same
+    service through its injector, it will get an instance of the service that is entirely differen
+    from the one from the root injector. This is a technique called service scope limiting
+  */
+
+
 })
 export class HeroListComponent implements OnInit {
 

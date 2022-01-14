@@ -9,7 +9,7 @@ import { HeroService } from '../hero.service';
 })
 export class FavoriteHeroesComponent implements OnInit {
 
-  constructor(private heroservice : HeroService) { }
+  constructor(private heroservice : HeroService) { } //We could easily inject heroService without any injector because it is already present as Hero-List Component's providers
   heroes! : Hero[];
 
   ngOnInit(): void {

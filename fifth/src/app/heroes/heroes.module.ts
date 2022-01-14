@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { FavoriteHeroesComponent } from './favorite-heroes/favorite-heroes.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 /*
 An Angular module is a container for a particular block of code that adheres to the same functionality.
@@ -12,7 +13,7 @@ can also create other modules, usually called feature modules.
 */
 
 @NgModule({
-  declarations: [HeroListComponent, FavoriteHeroesComponent],  //declarations: The components, directives, and pipes that are registered with the module.
+  declarations: [HeroListComponent, FavoriteHeroesComponent, HeroDetailComponent],  //declarations: The components, directives, and pipes that are registered with the module.
   imports: [         //imports: Other modules that contain declarations to be used by this module.
     CommonModule
   ],
