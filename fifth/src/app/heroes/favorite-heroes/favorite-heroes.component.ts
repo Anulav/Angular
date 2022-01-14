@@ -1,6 +1,7 @@
 import { Component, Host, OnInit, Optional } from '@angular/core';
 import { Hero } from 'src/app/hero.model';
 import { HeroFavoriteService } from '../hero-favorite.service';
+import { heroSquadFactory } from '../hero-squad';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./favorite-heroes.component.css'],
   providers: [{     /* Here although we are using the reference of HeroService but the implementation class of HeroFavorite Service. So used full syntax rather than a shorthand.*/
     provide: HeroService,
-    useClass : HeroFavoriteService
+   // useClass : HeroFavoriteService
+   useFactory : heroSquadFactory(true), /*Created and using a Factory method heroSquadFactory*/
   }
   ]
 })
