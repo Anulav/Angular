@@ -14,7 +14,8 @@ We should effectively delegate business logic tasks away from the component.
 @Component({
   selector: 'app-hero-list',
   templateUrl: './hero-list.component.html',
-  styleUrls: ['./hero-list.component.css']
+  styleUrls: ['./hero-list.component.css'],
+  providers: [HeroService]  //Added hero Service as provider for HeroListComponent
 })
 export class HeroListComponent implements OnInit {
 
