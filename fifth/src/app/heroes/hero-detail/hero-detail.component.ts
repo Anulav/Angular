@@ -6,7 +6,8 @@ import { HeroDetailService } from './hero-detail.service';
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css'],
-  providers: [HeroDetailService] /*Provided HeroDetailService although it is also provideIn root. Service Scoping Baby!!*/
+  providers: [HeroDetailService], /*Provided HeroDetailService although it is also provideIn root. Service Scoping Baby!!.Also this is shorthand for providers: [{provide: HeroService, useClass: HeroService}]*/
+  //viewProviders: [HeroDetailService] In order to restrict the dependency Injection to current next we use the viewProviders rather than providers
 })
 export class HeroDetailComponent implements OnInit {
 
