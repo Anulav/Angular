@@ -1,11 +1,17 @@
 import { Component, Host, OnInit, Optional } from '@angular/core';
 import { Hero } from 'src/app/hero.model';
+import { HeroFavoriteService } from '../hero-favorite.service';
 import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-favorite-heroes',
   templateUrl: './favorite-heroes.component.html',
-  styleUrls: ['./favorite-heroes.component.css']
+  styleUrls: ['./favorite-heroes.component.css'],
+  providers: [{     /* Here although we are using the reference of HeroService but the implementation class of HeroFavorite Service. So used full syntax rather than a shorthand.*/
+    provide: HeroService,
+    useClass : HeroFavoriteService
+  }
+  ]
 })
 export class FavoriteHeroesComponent implements OnInit {
 
