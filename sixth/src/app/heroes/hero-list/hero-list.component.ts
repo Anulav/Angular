@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { map, Subject, Subscription, takeUntil } from 'rxjs';
 import { Hero } from '../hero.model';
 import { HeroService } from '../hero.service';
 
@@ -20,8 +20,14 @@ We should effectively delegate business logic tasks away from the component.
 })
 export class HeroListComponent implements OnInit, OnDestroy {
 
-  private heroSub! : Subscription; // For unsubscribing from Observable.
+  //private heroSub! : Subscription; // For unsubscribing from Observable.
+  private heroSub = new Subject(); /* We can use a particular type of observable called Subject, which extends an
+                                      Observable object as it is both an observer and an observable. It can multicast values
+                                      to multiple observers, whereas an Observable object is unicast.
 
+
+
+  */
 
   heroes! : Hero[];
   // private heroService: HeroService;
@@ -40,7 +46,9 @@ export class HeroListComponent implements OnInit, OnDestroy {
   }
 
   private getHeroes(){
-    this.heroSub = this.heroservice.getHeroes().subscribe(heroes => this.heroes=heroes);
+    this.heroservice.getHeroes().pipe(map((her: any) => this.heroes = her),
+    takeUntil(this.heroSub)
+    ).subscribe();
   }
 
   add(name: string){
@@ -61,8 +69,11 @@ export class HeroListComponent implements OnInit, OnDestroy {
     }
 
   ngOnDestroy(): void {
-      this.heroSub.unsubscribe(); //Unsubscribing the subscription on ngOnDestroy hook.
-  }
+     // this.heroSub.unsubscribe(); //Unsubscribing the subscription on ngOnDestroy hook.
+     this.heroSub.next(void 0); /* According to StackOverflow, You're defining your Subject as Subject<void>. Calling next() wants to emit undefined.
+                                  So you should call this.ngUnsubscribe$.next(void 0) instead. */
+     this.heroSub.complete();
+    }
 }
 
 /*
