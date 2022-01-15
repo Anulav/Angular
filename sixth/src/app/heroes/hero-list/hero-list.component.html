@@ -1,0 +1,16 @@
+<h3>Hero-list works!</h3>
+<ul>
+<li *ngFor="let hero of heroes">
+  <p> I am hero {{hero.name}} (id: {{hero.id}}) </p>
+</li>
+</ul>
+<div>
+<button (click)="add('Thudread')">Add Thudread</button> <!--Use single quotes inside the function-->
+</div>
+<div>
+<button (click)="rename(heroes[0])">Rename first</button>
+</div>
+<div>
+<button (click)="remove(heroes[0])">Remove first</button>
+</div>
+
