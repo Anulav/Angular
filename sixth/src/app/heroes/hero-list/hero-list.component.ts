@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Subject, Subscription, takeUntil } from 'rxjs';
+import { map, Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { Hero } from '../hero.model';
 import { HeroService } from '../hero.service';
 
@@ -29,6 +29,8 @@ export class HeroListComponent implements OnInit, OnDestroy {
 
   */
 
+  heroes$!: Observable<Hero[]>;
+
   heroes! : Hero[];
   // private heroService: HeroService;
   // constructor() {
@@ -49,6 +51,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
     this.heroservice.getHeroes().pipe(map((her: any) => this.heroes = her),
     takeUntil(this.heroSub)
     ).subscribe();
+    this.heroes$ = this.heroservice.getHeroes(); //Asunc must not be subscribed.
   }
 
   add(name: string){
@@ -78,4 +81,12 @@ export class HeroListComponent implements OnInit, OnDestroy {
 
 /*
   private methods are only accessible inside a class.
+*/
+
+/*
+  The async pipe is an Angular pipe that is used in conjunction with observables, and
+  its role is two-fold. It helps us to type less code, and it saves us the whole rigmarole
+  of having to set up and tear down a subscription.
+
+
 */
