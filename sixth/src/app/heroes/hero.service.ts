@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Hero } from './hero.model';
 
 @Injectable({
@@ -33,7 +33,15 @@ export class HeroService {
   constructor(private http: HttpClient) { }
 
   getHeroes(): Observable<Hero[]>{
-  return this.http.get<Hero[]>('api/heroes');
+  return this.http.get<Hero[]>('api/heroes').pipe(
+    catchError((error: HttpErrorResponse)=> {       /* RxJS provides the catchError operator to simplify catching HttpError and handling. In conjunction with the pipe operator, it can
+                                                       catch potential errors that may occur when initiating an HTTP request:  */
+
+      retry(2), //For retrying.
+      console.error(error);
+      return throwError(error); /* deprecated, throws the error object as Observable. */
+    })
+  );
   }
 
   createHero(name :string): Observable<Hero> {

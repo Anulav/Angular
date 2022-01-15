@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Hero } from '../hero.model';
 import { HeroService } from '../hero.service';
 
@@ -17,7 +18,10 @@ We should effectively delegate business logic tasks away from the component.
   styleUrls: ['./hero-list.component.css']
 
 })
-export class HeroListComponent implements OnInit {
+export class HeroListComponent implements OnInit, OnDestroy {
+
+  private heroSub! : Subscription; // For unsubscribing from Observable.
+
 
   heroes! : Hero[];
   // private heroService: HeroService;
@@ -31,13 +35,12 @@ export class HeroListComponent implements OnInit {
     to override it or mock it up if we wish.
   */
   constructor(private heroservice: HeroService){}
-
   ngOnInit(): void {
     this.getHeroes();
   }
 
   private getHeroes(){
-    this.heroservice.getHeroes().subscribe(heroes => this.heroes=heroes);
+    this.heroSub = this.heroservice.getHeroes().subscribe(heroes => this.heroes=heroes);
   }
 
   add(name: string){
@@ -47,7 +50,7 @@ export class HeroListComponent implements OnInit {
   rename(hero : Hero){
     const existingHero = {id: hero.id, name : 'Prizehog'};
     this.heroservice.editHero(hero.id, existingHero).subscribe(()=> {
-        this.heroes.find(hero => hero.id == existingHero.id).name='Pricezog'; /* Had to add strictNullCheck: false in compiler options to remove null checks*/
+        this.heroes.find(hero => hero.id == existingHero.id).name='Pricezog'; /* Had to add strictNullCheck: false in compiler options to remove null*/
     });
   }
 
@@ -57,6 +60,9 @@ export class HeroListComponent implements OnInit {
     });
     }
 
+  ngOnDestroy(): void {
+      this.heroSub.unsubscribe(); //Unsubscribing the subscription on ngOnDestroy hook.
+  }
 }
 
 /*
