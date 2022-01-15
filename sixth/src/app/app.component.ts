@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sixth';
+  timeNow! : Date;
+
+  time$ = new Observable(observer =>{  /* New Observable. By convention we use $ after the name of an observable. */
+    setInterval(()=>{
+      observer.next();
+    },1000);
+  })
   private setTitle = () => {
       this.title = 'sixth_edited';
   }
@@ -24,17 +32,26 @@ export class AppComponent {
 
   private onCompletePromiseMethod(){
     return new Promise<void>((resolve, reject)=>{     /* Two methods as args on success resolve and reject for error.*/
-      setTimeout(()=>{
+      setTimeout(()=>{                               // Even after changing the method setTimeout to setInterval the the promise is executed once.
         resolve();
       },4000);
     });
   }
 
+  private setTimeNow = ()=>{
+    this.timeNow = new Date();
+  }
+
+
   constructor(){
     this.changeTitle(this.setTitle); /* Setting setTitle as callback to the changeTitle */
     this.onCompletePromiseMethod().then(this.setTitlePromise); /*  To execute a method that returns a promise, we invoke the method and
                                                                    chain it with the then method. Much cleaner than callback.
-                                                                */
+    */
+    this.timeNow = new Date();
+    this.time$.subscribe(this.setTimeNow); /*  We use the subscribe method to register to an observable and get
+                                              notified of any changes. If we do not call this method, setInterval never executes.
+   */
   }
 
 }
@@ -44,16 +61,21 @@ export class AppComponent {
    as a parameter, which is called when the asynchronous operation is completed.
    Nested callbacks can lead to 'Callback Hell'.
 
-   Cons of Promises:
-   1. Sometimes we might need to produce a response output that follows a more complex digest process
-      or even cancel the whole process. We cannot accomplish such behavior with promises,
-      because they are triggered as soon as they're being instantiated. In other words, promises
-      are not lazy.
-      Promises allow us to resolve or reject an asynchronous operation, but sometimes we
-      might want to abort everything before getting to that point.
-   2. Promises behave as one-time operations. Once they are resolved, we cannot expect to receive any further information or state change notification unless
-      we rerun everything from scratch. Moreover, we sometimes need a more proactive
-      implementation of asynchronous data handling, which is where OBSERVABLES come into
-      the picture.
+  Limitations of Promises:
+  • They cannot be canceled.
+  • They are immediately executed.
+  • They are one-time operations only; there is no easy way to retry them.
+  • They respond with only one value.
 
+  To overcome above, we use Observables.
+
+  Observations: Although as assumed the Promise with setInterval should have executed once. But it executed
+  multiple times. Strange :|
+
+  Observables return a stream of events, and our subscribers receive prompt notification
+  of those events so that they can act accordingly. They do not perform an asynchronous
+  operation and die (although we can configure them to do so), but start a stream of
+  continuous events on which we can subscribe.
+
+  Reactive programming entails applying asynchronous subscriptions and transformations to observable streams of events
 */
