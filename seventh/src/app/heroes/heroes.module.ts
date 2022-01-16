@@ -9,7 +9,8 @@ import { HeroListComponent } from './hero-list/hero-list.component';
 @NgModule({
   declarations: [
     HeroListComponent,
-    HeroDetailComponent],
+    HeroDetailComponent
+  ],
   imports: [
     CommonModule,
     HeroesRoutingModule

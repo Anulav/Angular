@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path : '**', component: PageNotFoundComponent} /*It is better to define a wildcard route along with the related component in
+                                                    AppRoutingModule. The wildcard route applies to the whole application,
+                                                    and thus it is not tied to a specific feature.*/
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -22,4 +27,5 @@ export class AppRoutingModule { }
   separate routing module as this doesn't scales well.
 
   ng generate module heroes --routing
+
 */
