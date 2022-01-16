@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
 
-const routes: Routes = [
-  {path: 'heroes', component : HeroListComponent},
-  {path: 'hero', component : HeroDetailComponent},
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -23,4 +18,8 @@ export class AppRoutingModule { }
   By default, AppModule imports AppRoutingModule, so all the components
   of our application are enabled with routing capabilities
 
+  This is how basic routing is configured. But for large scale apps it is advised to have a
+  separate routing module as this doesn't scales well.
+
+  ng generate module heroes --routing
 */
