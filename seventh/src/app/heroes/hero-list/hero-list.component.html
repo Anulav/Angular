@@ -1,1 +1,31 @@
-<p>hero-list works!</p>
+<h3>Hero-list works!</h3>
+<ul>
+  <li *ngFor="let hero of heroes">
+    <a [routerLink]="['./', hero.id]">I am hero {{hero.name}} (id: {{hero.id}})</a> <!-- ./ path indicates to navigate relative to the       current level, which is /heroes, in our case. If the route that we wanted to navigate to one level above the heroes route, we would have used ../ as a path-->
+    <!--The routerLink directive requires property binding when dealing with dynamic
+      routes. It will create an href attribute that contains the /hero path, followed by
+        the value of its id property.-->
+  </li>
+</ul>
+<router-outlet></router-outlet> <!-- HeroListComponent should contain existing contents along with a
+  router-outlet element. The additional router-outlet
+  element is used to render HeroDetailComponent when the related route is activated.
+  -->
+<div>
+  <button (click)="add('Thudread')">Add Thudread</button>
+  <!--Use single quotes inside the function-->
+</div>
+<div>
+  <button (click)="rename(heroes[0])">Rename first</button>
+</div>
+<div>
+  <button (click)="remove(heroes[0])">Remove first</button>
+</div>
+Heroes$ using Async pipe
+<ul>
+<li *ngFor="let hero of heroes$ | async">
+<p>I am hero {{ hero.name }} (id: {{ hero.id }})</p>
+</li>
+</ul>
+
+

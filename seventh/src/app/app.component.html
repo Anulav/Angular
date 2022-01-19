@@ -1,6 +1,15 @@
 
-<nav>
-  <a routerLink="/heroes">Heroes</a><!--Althoug declared as hero and heroes in routes we use "/" as a prefix-->
-  <a routerLink="/hero">Hero</a>
+<nav class="navbar" >
+  <a routerLink="/heroes" routerLinkActive="active">Heroes</a><!--Althoug declared as hero and heroes in routes we use "/" as a prefix-->
+ <!-- <a routerLink="/hero" routerLinkActive="active">Hero</a> -->
 </nav>
 <router-outlet></router-outlet>
+
+<!--
+  RouterModule exports the routerLinkActive directive, which we can use to change
+  the style of an active route. It works similarly to the class binding.
+  It accepts a list of class names or a single class that is added when the link is active
+  and is removed when inactive.
+
+
+-->
