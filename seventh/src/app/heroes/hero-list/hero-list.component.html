@@ -1,7 +1,7 @@
 <h3>Hero-list works!</h3>
 <ul>
   <li *ngFor="let hero of heroes">
-    <a [routerLink]="['./', hero.id]">I am hero {{hero.name}} (id: {{hero.id}})</a> <!-- ./ path indicates to navigate relative to the       current level, which is /heroes, in our case. If the route that we wanted to navigate to one level above the heroes route, we would have used ../ as a path-->
+    <a [routerLink]="['/hero', hero.id]">I am hero {{hero.name}} (id: {{hero.id}})</a> <!-- ./ path indicates to navigate relative to the       current level, which is /heroes, in our case. If the route that we wanted to navigate to one level above the heroes route, we would have used ../ as a path-->
     <!--The routerLink directive requires property binding when dealing with dynamic
       routes. It will create an href attribute that contains the /hero path, followed by
         the value of its id property.-->
