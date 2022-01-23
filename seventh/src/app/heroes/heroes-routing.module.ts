@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
+import { ConfirmGuard } from '../confirm.guard';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 
@@ -17,7 +18,7 @@ const routes: Routes = [
   }
   */
   { path: 'heroes', component : HeroListComponent},
-  { path: 'hero/:id', component: HeroDetailComponent, canActivate: [AuthGuard]},
+  { path: 'hero/:id', component: HeroDetailComponent, canActivate: [AuthGuard], canDeactivate: [ConfirmGuard]},
 
   {path: '', redirectTo: '/heroes', pathMatch: 'full'}, //Route for empty path. It is worth noting that we added the empty route path after all other routes because, as we
   /*                                                    have already learned, the order of the routes is important. We want more specific routes
