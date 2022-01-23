@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
 import { ConfirmGuard } from '../confirm.guard';
+import { HeroDetailResolveService } from '../hero-detail-resolve.service';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 
@@ -18,11 +19,17 @@ const routes: Routes = [
   }
   */
   { path: 'heroes', component : HeroListComponent},
-  { path: 'hero/:id', component: HeroDetailComponent, canActivate: [AuthGuard], canDeactivate: [ConfirmGuard]},
+  { path: 'hero/:id', component: HeroDetailComponent, canActivate: [AuthGuard], canDeactivate: [ConfirmGuard],
+    resolve: {
+      hero: HeroDetailResolveService //Registering resolver service.
+    }
+  },
 
   {path: '', redirectTo: '/heroes', pathMatch: 'full'}, //Route for empty path. It is worth noting that we added the empty route path after all other routes because, as we
   /*                                                    have already learned, the order of the routes is important. We want more specific routes
                                                         before less specific ones*/
+
+
 //  {path : 'hero/:id', component: HeroDetailComponent} /*The colon character denotes that id is a route parameter. If a route has more than
 //  one parameter, we separate them with '/'*/
 ];

@@ -18,9 +18,7 @@ export class HeroDetailComponent implements OnInit {
   */
 
   ngOnInit(): void {
-    this.getHeroObs();
-    console.log("inside component details");
-    
+    this.hero = this.route.snapshot.data['hero']!;
 
   }
 
@@ -33,7 +31,7 @@ export class HeroDetailComponent implements OnInit {
                                                a number.
 
         */
-        const id = +params.get('id');
+        const id = +params.get('id')!;
         console.log(id);
         return this.heroService.getHero(id);
       }),
