@@ -3,6 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  {path: 'about', loadChildren: ()=> import('./about/about.module').then(m=> m.AboutModule)}, /*
+  The loadChildren property returns an arrow
+  that uses the ES6 dynamic statement to lazy load AboutModule.
+  The import function accepts the relative path of the module that we want to import and returns a
+  promise object that contains the TypeScript class of the Angular module that we want to load.
+  want to load.
+
+  Also, We did not add AboutModule to the imports array of AppModule. If
+  we had done so. AboutModule, would have been loaded twice: once eagerly
+  from AppModule and another time lazily from the About link.
+
+
+  */
   {path : '**', component: PageNotFoundComponent} /*It is better to define a wildcard route along with the related component in
                                                     AppRoutingModule. The wildcard route applies to the whole application,
                                                     and thus it is not tied to a specific feature.*/
