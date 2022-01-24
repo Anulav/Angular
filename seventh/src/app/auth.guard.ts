@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   private isAuthenticated: boolean = true; /* In a real-world application, we would delegate the decision of whether a user is
                                               authenticated or not to a separate Angular service. The service would probably
                                               check the local storage of the browser or any other means to indicate whether
@@ -14,6 +14,9 @@ export class AuthGuard implements CanActivate {
 
   constructor(private router: Router){
 
+  }
+  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.checkLogin(); /* Protecting lazy loaded module using the canLoad interface*/
   }
   canActivate(
     route: ActivatedRouteSnapshot,

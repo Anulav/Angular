@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: 'about', loadChildren: ()=> import('./about/about.module').then(m=> m.AboutModule)}, /*
+  {path: 'about', loadChildren: ()=> import('./about/about.module').then(m=> m.AboutModule), canLoad: [AuthGuard]}, /*
   The loadChildren property returns an arrow
   that uses the ES6 dynamic statement to lazy load AboutModule.
   The import function accepts the relative path of the module that we want to import and returns a
