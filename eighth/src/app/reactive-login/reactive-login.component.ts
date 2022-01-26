@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-login',
@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ReactiveLoginComponent implements OnInit {
 
+  flag = false;
   loginForm = new FormGroup({
     username : new FormControl(['']),
     password : new FormControl([''])
@@ -21,12 +22,21 @@ export class ReactiveLoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.flag=true;
   }
 
   login(){
     const control = this.loginForm.controls;
-    console.log("Username: "+ control['username'].value);
-    console.log("Password: "+ control['password'].value);
+    console.log(this.getUsername());
+    console.log(this.getPassword());
+  }
+
+  getUsername(): AbstractControl{                 //Using getter methods to access the formControl attributes. A cleaner way!
+    return this.loginForm.controls['username'];
+  }
+
+  getPassword(): AbstractControl{
+    return this.loginForm.controls['password'];
   }
 
 }

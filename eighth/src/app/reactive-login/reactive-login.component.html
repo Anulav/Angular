@@ -1,12 +1,12 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <div>
-    <input type="text" placeholder="Username" formControlName="username">
+    <input type="text" placeholder="Username" formControlName="username" required>
   </div>
-  <input type="password" placeholder="Password" formControlName="password">
+  <input type="password" placeholder="Password" formControlName="password" required>
   <button type="submit">Submit</button>
   <button type="reset">reset</button>
 </form>
-<div *ngIf="loginForm.controls['username'].value">Hi, You are trying to login as {{loginForm.controls['username'].value}}</div>
+<div *ngIf="getUsername().value.length !== 0">Hi{{", You are trying to login as " +getUsername().value}}</div> <!--BUG: ngIf not works when the component is initialized-->
 
 <!--Previously, in the template-driven form, we had access to the username and
     password properties of the data model directly. In reactive forms, this is not the
@@ -20,3 +20,18 @@
     to access form control values as a single object. We usually use this property
     when posting whole entities in a backend API.
   -->
+
+<!--The Angular framework sets the following classes automatically in a form control according to its current status:
+
+      ng-untouched: Indicates that we have not interacted with the control yet
+      ng-touched: Indicates that we have interacted with the control
+      ng-dirty: Indicates that the control has a value
+      ng-pristine: Indicates that the control does not have a value yet
+      ng-valid: Indicates that the value of the control is valid
+      ng-invalid: Indicates that the value of the control is not valid
+      Each class name has a similar property in the form model-->
+
+<!--For the ng-valid and ng-invalid classes to work, we need to add a validation rule to
+our input elements. There are many built-in validators that we can use,
+but in this case, we will use the required one, which indicates that
+an input control must have a value to be valid. -->
