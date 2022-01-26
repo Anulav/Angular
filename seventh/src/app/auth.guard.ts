@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate/*, CanLoad */ {
   private isAuthenticated: boolean = true; /* In a real-world application, we would delegate the decision of whether a user is
                                               authenticated or not to a separate Angular service. The service would probably
                                               check the local storage of the browser or any other means to indicate whether
@@ -15,9 +15,10 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private router: Router){
 
   }
-  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+/*  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.checkLogin(); /* Protecting lazy loaded module using the canLoad interface*/
-  }
+/*                                Commenting it out to check the CustomPreloadingService
+  } */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
