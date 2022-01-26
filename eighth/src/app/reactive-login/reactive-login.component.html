@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div>
+    <input type="text" placeholder="Username" formControlName="username">
+  </div>
+  <input type="password" placeholder="Password" formControlName="password">
+  <button type="submit">Submit</button>
+  <button type="reset">reset</button>
+</form>
+<div *ngIf="loginForm.controls['username'].value">Hi, You are trying to login as {{loginForm.controls['username'].value}}</div>
+
+<!--Previously, in the template-driven form, we had access to the username and
+    password properties of the data model directly. In reactive forms, this is not the
+    case since the form model is the source of truth. So, we need to get input control
+    values from the FormGroup or FormControl classes. The FormGroup class
+    exposes the controls property, which we can use to get a specific FormControl
+    instance. The FormControl class contains various properties, such as the value
+    of the input control associated with it.
+
+    The FormGroup class also contains a value property, which we can use
+    to access form control values as a single object. We usually use this property
+    when posting whole entities in a backend API.
+  -->

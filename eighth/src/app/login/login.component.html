@@ -21,21 +21,8 @@ However, if form-tag was used by mistake (like in my case sometimes), changing f
 
 
 Important Note
-The syntax of a banana in a box [()] that we use for the ngModel directive is
-not random at all. Under the hood, ngModel is a directive that contains
-a @Input binding named ngModel and a @Output binding named
-ngModelChange. It implements a particular interface called
-ControlValueAccessor that is used to create custom controls for
-forms. By convention, when a directive or a component contains both bindings
-that start with the same name, but the output binding ends in Change,
-the property can be used as a two-way binding.
-
-
-
-
-
-
-
-
-
+The syntax of a banana in a box [()] that we use for the ngModel directive is not random at all. Under the hood, ngModel is a directive that contains
+a @Input binding named ngModel and a @Output binding named ngModelChange. It implements a particular interface called
+ControlValueAccessor that is used to create custom controls for forms. By convention, when a directive or a component contains both bindings
+that start with the same name, but the output binding ends in Change, the property can be used as a two-way binding.
 -->

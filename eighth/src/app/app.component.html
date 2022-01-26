@@ -1,1 +1,2 @@
-<app-login></app-login>
+<app-login *ngIf="!useReactiveForms"></app-login>
+<app-reactive-login *ngIf="useReactiveForms"></app-reactive-login>
