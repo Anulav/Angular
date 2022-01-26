@@ -30,3 +30,9 @@ export class NestedFormComponent implements OnInit {
   }
 
 }
+
+
+/* Added a nested form of Biometric Data. Angular is smart enough to recognize it as child form.
+  May have expected to bind it directly to the heroDetails.
+  property, but this is not going to work biometricData
+*/

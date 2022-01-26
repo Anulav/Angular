@@ -1,12 +1,25 @@
+<h3>Reactive forms</h3>
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <div>
-    <input type="text" placeholder="Username" formControlName="username" required>
+    <input type="text" name="username" placeholder="Username" formControlName="username" required>
+    <span class="help-block" *ngIf="username.touched && username.invalid">The username is not valid</span>
   </div>
-  <input type="password" placeholder="Password" formControlName="password" required>
-  <button type="submit">Submit</button>
-  <button type="reset">reset</button>
+  <div>
+    <input type="email" name="email" placeholder="email" formControlName="email" required>
+    <span class="help-block" *ngIf="email.touched && email.invalid">The email is not valid</span>
+  </div>
+
+  <div>
+    <input type="password" name="password" placeholder="Password" formControlName="password" required>
+    <span class="help-block" *ngIf="password.touched && password.hasError('required')">The password is required</span>
+    <span class="help-block" *ngIf="password.touched && password.hasError('minlength')">The password is too short</span>
+  </div>
+  <br>
+  <button type="submit" [disabled]="!loginForm.valid">Login</button>
+  <br>
+  <button type="reset">Reset</button>
+  <div *ngIf="username?.value.length > 1">Hi, {{username.value}}</div> <!--BUG: ngIf not works when the component is initialized-->
 </form>
-<div *ngIf="getUsername().value.length !== 0">Hi{{", You are trying to login as " +getUsername().value}}</div> <!--BUG: ngIf not works when the component is initialized-->
 
 <!--Previously, in the template-driven form, we had access to the username and
     password properties of the data model directly. In reactive forms, this is not the
