@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -23,7 +23,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})], /*A preloading strategy can be applied to lazy-loaded modules only and can be configured
+                                                                                      using the forRoot method of RouterModule. We can choose either to preload all
+                                                                                      the modules or specify a custom strategy as to which module is loaded when. To enable
+                                                                                      preloading for all the modules, we use the PreloadAllModules strategy
+
+                                                                                      */
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
