@@ -1,0 +1,30 @@
+<form [formGroup]="heroDetails" (ngSubmit)="login()">
+  <div>
+    <input type="text" placeholder="Name" formControlName="name" required />
+  </div>
+  <input
+    type="text"
+    placeholder="RealName"
+    formControlName="realName"
+    required
+  />
+  <form formGroupName="biometricData">
+    <div>
+      <label>Age:</label>
+      <input type="number" formControlName="age" />
+    </div>
+    <div>
+      <label>Eyes:</label>
+      <input type="color" formControlName="eyes" />
+    </div>
+    <div>
+      <label>Hair:</label>
+      <input type="color" formControlName="hair" />
+    </div>
+  </form>
+
+  <button type="submit">Submit</button>
+  <button type="reset">reset</button>
+</form>
+
+
