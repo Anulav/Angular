@@ -1,0 +1,41 @@
+<form (ngSubmit)="login()">
+  <div>
+    <input type="text" placeholder="Username" [(ngModel)]="username" name="username">
+  </div>
+  <input type="password" placeholder="Password" [(ngModel)]="password" name="password">
+  <button type="submit">Submit</button>
+  <button type="reset">reset</button>
+</form>
+<div *ngIf="username">Hi, You are trying to login as {{username}}</div>
+<!--When 'name' was not added in the form attribute. Gave Error: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
+Solution, StackOverflow:
+
+If ngForm is used, all the input fields which have [(ngModel)]="" must have an attribute name with a value.
+<input [(ngModel)]="firstname" name="something">
+
+Standalone
+
+By setting [ngModelOptions]="{standalone: true}" one tells Angular something like, ignore the form and/or ngForm, just bind it to firstname variable please.
+However, if form-tag was used by mistake (like in my case sometimes), changing form to div is another option (but only if your styles don't need form-tag).
+
+
+Important Note
+The syntax of a banana in a box [()] that we use for the ngModel directive is
+not random at all. Under the hood, ngModel is a directive that contains
+a @Input binding named ngModel and a @Output binding named
+ngModelChange. It implements a particular interface called
+ControlValueAccessor that is used to create custom controls for
+forms. By convention, when a directive or a component contains both bindings
+that start with the same name, but the output binding ends in Change,
+the property can be used as a two-way binding.
+
+
+
+
+
+
+
+
+
+-->
