@@ -20,7 +20,7 @@
     </div>
     <div>
       <label>Hair:</label>
-      <input type="color" formControlName="hairy" />
+      <input type="color" formControlName="hair" />
     </div>
   </form>
   <button type="button" (click)="addPower()">Add Power</button> <!--BUG:Important to define the typw of the button or else clicking this invokes submit everytime-->
@@ -28,6 +28,8 @@
     <label>Power: </label>
     <input type="text" [formControlName]="i">
   </div>
+  <button type="button" (click)="addHero()">Add Munal</button>
+  <button type="button" (click)="addBio()">Add Bio</button>
   <button type="submit">Submit</button>
   <button type="reset">reset</button>
 </form>

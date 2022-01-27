@@ -14,3 +14,14 @@ export function reservedNameValidator(): ValidatorFn{
     return reserved? {'reservedName': true}: null; //This is why return type is declared as -> {[key: string]:boolean} | null
   }
 }
+
+/*
+The validator is a function that returns another function, called the configured
+validator function. It accepts the form control object to which it will be applied as a
+parameter. If the value of the control matches the name of a hero from the heroes list, it
+returns a validation error object. Otherwise, it returns null.
+The key of the validation error object specifies a descriptive name for the validator error.
+This is a name that we can later check in the errors object of the control to find out if it
+has any errors. The value of the validation error object can be any arbitrary value that we
+can pass in the error message.
+*/
