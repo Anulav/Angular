@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reactive-login',
   templateUrl: './reactive-login.component.html',
   styleUrls: ['./reactive-login.component.css']
 })
-export class ReactiveLoginComponent implements OnInit {
+export class ReactiveLoginComponent implements OnInit, OnDestroy {
 
+  private passWordHintSubscription?: Subscription;
+  showPasswordHint?: boolean;/*
+    FormControl instance contains two observable
+    properties: statusChanges and valueChanges. The first one notifies us when the
+    status of the control changes, such as going from invalid to valid. On the other hand,
+    the second one notifies us when the value of the control changes.
+  */
   flag = false;
   loginForm = new FormGroup({
     username : new FormControl('', [Validators.required, Validators.minLength(2)]), //Passed Validators to the formControls. Either a single Validator or an array of Validators can be passed.
@@ -26,9 +34,15 @@ export class ReactiveLoginComponent implements OnInit {
     for the username and another for the password.
   */
   constructor() { }
+  ngOnDestroy(): void {
+    this.passWordHintSubscription?.unsubscribe(); //Manually unsubscribing from observable.
+  }
 
   ngOnInit(): void {
     this.flag=true;
+    this.passWordHintSubscription= this.password.valueChanges.subscribe((value: string)=>{
+      this.showPasswordHint = value.length < 6;
+    });
   }
 
   login(){

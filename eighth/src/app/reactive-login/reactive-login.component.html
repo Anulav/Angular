@@ -13,6 +13,7 @@
     <input type="password" name="password" placeholder="Password" formControlName="password" required>
     <span class="help-block" *ngIf="password.touched && password.hasError('required')">The password is required</span>
     <span class="help-block" *ngIf="password.touched && password.hasError('minlength')">The password is too short</span>
+    <span class="help-block" *ngIf="showPasswordHint">The password should be of atleast 6 characters</span>
   </div>
   <br>
   <button type="submit" [disabled]="!loginForm.valid">Login</button>
