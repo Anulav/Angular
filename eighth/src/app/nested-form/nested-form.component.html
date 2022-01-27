@@ -1,6 +1,7 @@
 <form [formGroup]="heroDetails" (ngSubmit)="login()">
   <div>
-    <input type="text" placeholder="Name" formControlName="name" required />
+    <input type="text" placeholder="Name" formControlName="name" />
+    <span class="help-block" *ngIf="name.touched && name.hasError('reservedName')">The Name has been reserved. Please try another</span>
   </div>
   <input
     type="text"

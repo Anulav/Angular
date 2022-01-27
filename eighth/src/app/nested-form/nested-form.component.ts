@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { reservedNameValidator } from '../reserved-name-validator.directive';
 
 @Component({
   selector: 'app-nested-form',
@@ -11,7 +12,7 @@ export class NestedFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   heroDetailsWithoutBuilder = new FormGroup({
-    name: new FormControl(['']),
+    name: new FormControl([''], [reservedNameValidator(), Validators.required]),
     realName: new FormControl(['']),
     biometricData : new FormGroup({
       age: new FormControl(['']),
@@ -37,7 +38,7 @@ export class NestedFormComponent implements OnInit {
                                          the FormGroup, FormControl, and FormArray data types explicitly, although that is
                                          what is being created under the hood   */
   this.heroDetails = this.formBuilder.group(
-    {name: ['', Validators.required],
+    {name: ['',[ Validators.required, reservedNameValidator()]],
      realName: ['', Validators.required],
      biometricData: this.formBuilder.group({
        age: [''],
@@ -82,6 +83,10 @@ export class NestedFormComponent implements OnInit {
     this.powers.controls.forEach(element =>
         console.log(element.value)
       );
+  }
+
+  get name(): AbstractControl {
+    return this.heroDetails.controls['name'];
   }
 
 }

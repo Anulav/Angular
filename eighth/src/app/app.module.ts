@@ -11,7 +11,7 @@ import { NestedFormComponent } from './nested-form/nested-form.component';
     AppComponent,
     LoginComponent,
     ReactiveLoginComponent,
-    NestedFormComponent
+    NestedFormComponent,
   ],
   imports: [
     BrowserModule,
