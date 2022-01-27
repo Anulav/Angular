@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-nested-form',
@@ -8,9 +8,9 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class NestedFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
-  heroDetails = new FormGroup({
+  heroDetailsWithoutBuilder = new FormGroup({
     name: new FormControl(['']),
     realName: new FormControl(['']),
     biometricData : new FormGroup({
@@ -25,13 +25,40 @@ export class NestedFormComponent implements OnInit {
     */
   });
 
+  heroDetails!: FormGroup;
+
+  private buildForm(){                /* We use the group method of the FormBuilder service to group form controls together.
+                                         FormControl is now an array that contains two items: the first is the default value of the
+                                         control, while the second is the list of validators. The FormBuilder service also contains
+                                         the following methods:
+                                         • control: Initializes a FormControl object
+                                         • array: Initializes a FormArray object
+                                         Using the FormBuilder service looks a lot easier to read, and we don't have to deal with
+                                         the FormGroup, FormControl, and FormArray data types explicitly, although that is
+                                         what is being created under the hood   */
+  this.heroDetails = this.formBuilder.group(
+    {name: ['', Validators.required],
+     realName: ['', Validators.required],
+     biometricData: this.formBuilder.group({
+       age: [''],
+       eyes: [''],
+       hairy: ['']
+     }),
+     powers: this.formBuilder.array([])
+  }
+  );
+}
+
   ngOnInit(): void {
+    this.buildForm();
   }
 
   login(){
     const control = this.heroDetails.controls;
       console.log(control['realName'].value);
       console.log(this.heroDetails.get('biometricData')?.value['age']);
+      console.log(this.heroDetails.get('biometricData')?.value['hairy']);
+
       this.printPowers();
   }
 
