@@ -22,7 +22,11 @@
       <input type="color" formControlName="hair" />
     </div>
   </form>
-
+  <button type="button" (click)="addPower()">Add Power</button> <!--BUG:Important to define the typw of the button or else clicking this invokes submit everytime-->
+  <div formArrayName="powers" *ngFor="let power of powers.controls; let i=index"><!--BUG:Important to give formArrayName or else gives error of not finding element-->
+    <label>Power: </label>
+    <input type="text" [formControlName]="i">
+  </div>
   <button type="submit">Submit</button>
   <button type="reset">reset</button>
 </form>
