@@ -53,7 +53,7 @@ export class ReactiveLoginComponent implements OnInit, OnDestroy {
 
   }
 
-  get username(): AbstractControl{                 //Not your usual getter method. See closely. Using getter methods to access the formControl attributes. A cleaner way!
+  get username(): AbstractControl{                 //Not your usual getter method. See closely, C# inspiration ;p. Using getter methods to access the formControl attributes. A cleaner way!
     return this.loginForm.controls['username'];
   }
 
