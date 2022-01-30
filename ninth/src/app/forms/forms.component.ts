@@ -16,6 +16,8 @@ export class FormsComponent implements OnInit {
 
   filteredHeroes$?: Observable<Hero[]>;
 
+  isChecked: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

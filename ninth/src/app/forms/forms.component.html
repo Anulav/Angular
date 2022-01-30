@@ -6,6 +6,9 @@
 <mat-autocomplete #heroesAuto="matAutocomplete">
   <mat-option *ngFor="let hero of filteredHeroes$ | async" [value]="hero.name">{{hero.name}}</mat-option>
 </mat-autocomplete>
+
+<mat-checkbox [checked]="isChecked">Check me</mat-checkbox>
+
 <!--
   The mat-autocomplete element contains a set of mat-option elements that represent the list of suggested values. We use the
   ngFor directive to iterate over a list of heroes that we have created in the heroes.ts file
