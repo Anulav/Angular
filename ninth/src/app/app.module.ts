@@ -14,10 +14,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MenuComponent } from './menu/menu.component';
+import { LayoutComponent } from './layout/layout.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent
+    FormsComponent,
+    MenuComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +40,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule /* MatNativeDateModule from the @angular/material/core namespace.
+    MatNativeDateModule, /* MatNativeDateModule from the @angular/material/core namespace.
     MatNativeDateModule provides parsing and formatting utilities for dates, and
     it is based on the native Date object implementation.
     */
-
+    MatMenuModule,
+    MatListModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

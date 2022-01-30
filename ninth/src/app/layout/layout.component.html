@@ -1,0 +1,18 @@
+<mat-list>
+  <mat-list-item *ngFor="let hero of heroes">
+    {{ hero.name }}
+  </mat-list-item>
+  </mat-list>
+<!--Above is the basic mat-list-->
+<br/>
+<mat-selection-list *ngFor="let hero of heroes">
+  <mat-list-option>
+    {{ hero.name }}
+  </mat-list-option>
+</mat-selection-list>
+<!--Above is the mat-selection-list-->
+<mat-grid-list cols="3" rowHeight="10rem" gutterSize="50">
+  <mat-grid-tile *ngFor="let hero of heroes" >
+    {{ hero.name }}
+  </mat-grid-tile>
+</mat-grid-list>
