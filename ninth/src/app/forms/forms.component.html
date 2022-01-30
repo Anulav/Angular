@@ -1,0 +1,32 @@
+<mat-form-field>
+  <input matInput type="text" [formControl]="name" placeholder="Name" [matAutocomplete]="heroesAuto">
+  <mat-error *ngIf="!name.valid">Name is required</mat-error>
+</mat-form-field>
+
+<mat-autocomplete #heroesAuto="matAutocomplete">
+  <mat-option *ngFor="let hero of filteredHeroes$ | async" [value]="hero.name">{{hero.name}}</mat-option>
+</mat-autocomplete>
+<!--
+  The mat-autocomplete element contains a set of mat-option elements that represent the list of suggested values. We use the
+  ngFor directive to iterate over a list of heroes that we have created in the heroes.ts file
+  and display them as options.
+
+
+  We define a heroesAuto template reference variable and set it to matAutocomplete
+  so that we can reference it later in the input field. This way, when the input control is
+  focused, it triggers the autocomplete control to display the suggested hero names.
+
+  This above auto-complete can be retrieved from a backend API.
+
+-->
+
+
+<!--
+  Error thrown mat-form-field must contain a MatFormFieldControl
+  Had to add MatInputModule too.
+
+  Per StackOverflow,
+  I had this issue. I imported MatFormFieldModule at my main module, but forgot to add MatInputModule to the imports array.
+
+
+-->
