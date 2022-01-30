@@ -11,7 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule /* MatNativeDateModule from the @angular/material/core namespace.
+    MatNativeDateModule provides parsing and formatting utilities for dates, and
+    it is based on the native Date object implementation.
+    */
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,14 @@
 
 <mat-checkbox [checked]="isChecked">Check me</mat-checkbox>
 
+<br>
+<mat-form-field>
+  <input matInput type="text" placeholder="Select a Date" [matDatepicker]="picker">
+</mat-form-field>
+
+<mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+
 <!--
   The mat-autocomplete element contains a set of mat-option elements that represent the list of suggested values. We use the
   ngFor directive to iterate over a list of heroes that we have created in the heroes.ts file
@@ -32,4 +40,17 @@
   I had this issue. I imported MatFormFieldModule at my main module, but forgot to add MatInputModule to the imports array.
 
 
+-->
+
+<!--
+  Date-Picker
+  The idea is that the input control triggers the date-picker control to be displayed. To
+  create a date-picker control, we need to add a mat-datepicker-toggle and a
+  mat-datepicker element inside the mat-form-field element
+
+  The mat-datepicker-toggle is a button element with a calendar icon on it. It is
+  positioned at the end of the input control, as defined by the matSuffix directive, and
+  displays the calendar pop-up when clicked by the user. The mat-datepicker element
+  defines a picker template reference variable that we can use to associate it both with the
+  input field and the mat-datepicker-toggle element.
 -->
