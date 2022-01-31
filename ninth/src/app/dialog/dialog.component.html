@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>
+  <mat-dialog-content>Love Angular?</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button [matDialogClose]="true">Yes</button>
+    <button mat-raised-button matDialogClose>No</button>
+  </mat-dialog-actions>
+</h1>
+
+<!--
+  We create an Angular component that will be the host for our dialog. The template of
+  the component contains various directives and elements that MatDialogModule
+  exports and we can use. The mat-dialog-title directive defines the title of the
+  dialog, and the mat-dialog-content is the actual content of the dialog. The
+  mat-dialog-actions element defines the actions that can be performed by the
+  dialog, and it usually wraps button elements.
+
+  We use the mat-dialog-close directive on a button element to indicate
+  that the dialog will be closed when that button is clicked. In our case, we use the
+  mat-dialog-close directive twice. In the first case, we use it as a property
+  binding and set it to a value that is finally passed back to the caller of the dialog. In
+  the second case, we close the dialog right away.
+
+-->
