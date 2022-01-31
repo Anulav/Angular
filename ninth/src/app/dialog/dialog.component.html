@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>
   <mat-dialog-content>{{data}}</mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button [matDialogClose]="true">Yes</button>
-    <button mat-raised-button matDialogClose>No</button>
+    <button mat-raised-button (click)="closeDialog(true)">Yes</button>
+    <button mat-raised-button (click)="closeDialog(false)">No</button>
   </mat-dialog-actions>
 </h1>
 
