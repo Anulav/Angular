@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any, private dialogRef: MatDialogRef<DialogComponent>) { }/*
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }/*
   In a real-world scenario, you will probably need to create a reusable component for
   displaying a dialog in an Angular project. Even better, the component may end up in an
   Angular library as a package. Therefore, you should configure the dialog component to
@@ -28,11 +28,13 @@ export class DialogComponent implements OnInit {
   */
 
   ngOnInit(): void {
-  }
+    console.log(this.data);
 
-  closeDialog(data?: boolean){
-    this.dialogRef.close(data);
-    window.alert(data);
   }
-
+/*
+  closeDialog(returned?: boolean){
+    this.dialogRef.close(returned);
+    window.alert(returned);
+  }
+*/
 }

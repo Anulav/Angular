@@ -21,6 +21,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { TableComponent } from './table/table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { DialogComponent } from './dialog/dialog.component';
     FormsComponent,
     MenuComponent,
     LayoutComponent,
-    DialogComponent
+    DialogComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatMenuModule,
     MatListModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

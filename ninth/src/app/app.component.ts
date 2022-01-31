@@ -20,12 +20,12 @@ export class AppComponent {
 
       */
       data: 'Love Angular 10?'
-    })/*.afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       if (result)                                  /* The open method of the MatDialog service returns an afterClosed observable
       property that we can subscribe to, which will enable us to be notified when the dialog
       closes. The afterClosed observable emits any value that is sent back from the dialog */
-       /* window.alert(result);
-    })*/;
+        window.alert(result);
+    });
   }
 
 }
