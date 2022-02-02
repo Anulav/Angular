@@ -23,7 +23,7 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   /* Use the @ViewChild decorator to get a reference to the mat-paginator
-     element that we created:*/
+     element that we created*/
 
   ngOnInit(): void {
     this.heroes.sort = this.sort!;
