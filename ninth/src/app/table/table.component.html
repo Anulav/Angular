@@ -10,7 +10,7 @@
   <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
   <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
 </table>
-
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2,4,6]"></mat-paginator>
 <!--
 The dataSource property of the mat-table directive defines the data that we
 want to display on the table. It can be any sort of data that can be enumerated, such as
@@ -39,6 +39,6 @@ Also added CSS with table class width to 50% for better clarity.
 
   Use the @ViewChild decorator to get a reference to the matSort directive that
   we defined earlier:
-  
+
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 -->

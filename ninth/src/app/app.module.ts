@@ -24,6 +24,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { TableComponent } from './table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatGridListModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
