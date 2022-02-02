@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="heroes">
+<table mat-table [dataSource]="heroes" matSort matSortDisableClear="true">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let hero"> {{hero.id}} </td>
@@ -24,4 +24,21 @@ table element—once to define the header row of the table that displays the nam
 columns and the second time to define the actual rows that contain data
 
 Also added CSS with table class width to 50% for better clarity.
+-->
+
+<!--
+  Sorting:
+
+  MatSortModule exports a variety of directives that we can use to sort a table. Add
+  the matSort and matSortDisableClear directives to the table element and
+  add the mat-sort-header directive to each header cell that you want to sort.
+
+  We set the value of the matSortDisableClear directive to true because
+  sorting by default contains three states: ascending, descending, and the original
+  ordering. The last one clears the ordering, and that is why we disable it.
+
+  Use the @ViewChild decorator to get a reference to the matSort directive that
+  we defined earlier:
+  
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 -->
