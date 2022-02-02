@@ -27,6 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CopyTextComponent } from './copy-text/copy-text.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ListComponent } from './list/list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     LayoutComponent,
     DialogComponent,
     TableComponent,
-    CopyTextComponent
+    CopyTextComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    ClipboardModule
+    ClipboardModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
