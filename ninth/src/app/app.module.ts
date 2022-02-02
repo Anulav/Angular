@@ -29,6 +29,8 @@ import { CopyTextComponent } from './copy-text/copy-text.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListComponent } from './list/list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutComponent } from './flex-layout/flex-layout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,8 @@ import { ListComponent } from './list/list.component';
     DialogComponent,
     TableComponent,
     CopyTextComponent,
-    ListComponent
+    ListComponent,
+    FlexLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { ListComponent } from './list/list.component';
     MatSortModule,
     MatPaginatorModule,
     ClipboardModule,
-    DragDropModule
+    DragDropModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
