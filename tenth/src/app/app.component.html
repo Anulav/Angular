@@ -1,0 +1,30 @@
+<button
+  mat-icon-button
+  [class]="{ pulse: isBeating }"
+  color="accent"
+  (click)="isBeating = !isBeating"
+>
+  <mat-icon>favorite</mat-icon>
+</button>
+
+<div>
+  <button mat-icon-button (click)="state = 'large'">
+    <mat-icon>zoom_in</mat-icon>
+  </button>
+  <button mat-icon-button (click)="state = 'small'">
+    <mat-icon>zoom_out</mat-icon>
+  </button>
+  <br>
+  <mat-icon class="animate" [@sizeAnimation]="state">android</mat-icon>
+</div>
+
+<nav>
+  <button type="button" (click)="toggle()">Toggle Open/Close</button>
+</nav>
+
+<div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+  <p>The box is now {{ isOpen ? "Open" : "Closed" }}!</p>
+</div>
+
+
+<!--Open Close taken from Angular Site-->

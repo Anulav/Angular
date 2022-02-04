@@ -1,0 +1,27 @@
+@keyframes pulse {
+  0% {
+    transform: scale3d(1,1,1);
+  }
+  50% {
+    transform: scale3d(1.5,1.5,1.5);
+  }
+  100% {
+    transform: scale3d(1,1,1);
+  }
+}
+.pulse{
+  animation: pulse 1s infinite;
+}
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.open-close-container {
+  border: 1px solid #dddddd;
+  margin-top: 1em;
+  padding: 20px 20px 0px 20px;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
